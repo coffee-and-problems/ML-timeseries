@@ -11,12 +11,12 @@ file = 'GlobalTemperatures.csv'
 df = pd.read_csv(file, parse_dates = ['dt'],
          index_col = ['dt'], names=['dt', 'LandAverageTemperature'], header=0)
 series = df.LandAverageTemperature
-#print(df.head())
-#plt.xlabel('Date')
-#plt.ylabel('Land Average Temperature')
-#plt.plot(df)
+print(df.head())
+plt.xlabel('Date')
+plt.ylabel('Land Average Temperature')
+plt.plot(df)
 
-#plt.show()
+plt.show()
 
 #Проверим, является ли ряд стационарным с помощью теста Дикки-Фуллера
 #https://ru.wikipedia.org/wiki/Тест_Дики_—_Фуллера
@@ -37,40 +37,40 @@ print('ADF Statistic: %f' % result[0])
 print('p-value: %f' % result[1])
 
 S = 12 
-##Исходный ряд
-#fig, axes = plt.subplots(3, 2, sharex=False)
-#axes[0, 0].plot(series); axes[0, 0].set_title('Original Series')
-#plot_acf(series, axes[0, 1])
+#Исходный ряд
+fig, axes = plt.subplots(3, 2, sharex=False)
+axes[0, 0].plot(series); axes[0, 0].set_title('Original Series')
+plot_acf(series, axes[0, 1])
 
-##Ряд стал стационарным. А что, если бы нет?
-#axes[1, 0].plot(series_no_seasonal); axes[1, 0].set_title('No seasonal')
-#plot_acf(series_no_seasonal.dropna(),axes[1, 1])
+#Ряд стал стационарным. А что, если бы нет?
+axes[1, 0].plot(series_no_seasonal); axes[1, 0].set_title('No seasonal')
+plot_acf(series_no_seasonal.dropna(),axes[1, 1])
 
-##Первая разность
-#axes[2, 0].plot(series_no_seasonal.diff()); axes[2, 0].set_title('1st Differencing')
-#plot_acf(series_no_seasonal.diff().dropna(), axes[2, 1])
+#Первая разность
+axes[2, 0].plot(series_no_seasonal.diff()); axes[2, 0].set_title('1st Differencing')
+plot_acf(series_no_seasonal.diff().dropna(), axes[2, 1])
 
-#plt.show()
+plt.show()
 
 d = 0
 D = 1
 
-#fig, axes = plt.subplots(1, 2, sharex=False)
-#axes[0].plot(series_no_seasonal); axes[0].set_title('No seasonal')
-#axes[1].set(ylim=(0,5))
-#plot_pacf(series_no_seasonal.dropna(), axes[1])
+fig, axes = plt.subplots(1, 2, sharex=False)
+axes[0].plot(series_no_seasonal); axes[0].set_title('No seasonal')
+axes[1].set(ylim=(0,5))
+plot_pacf(series_no_seasonal.dropna(), axes[1])
 
-#plt.show()
+plt.show()
 
 p = 2 
 P = 0
 
-#fig, axes = plt.subplots(1, 2, sharex=False)
-#axes[0].plot(series_no_seasonal); axes[0].set_title('No seasonal')
-#axes[1].set(ylim=(0,1.2))
-#plot_acf(series_no_seasonal.dropna(), ax=axes[1])
+fig, axes = plt.subplots(1, 2, sharex=False)
+axes[0].plot(series_no_seasonal); axes[0].set_title('No seasonal')
+axes[1].set(ylim=(0,1.2))
+plot_acf(series_no_seasonal.dropna(), ax=axes[1])
 
-#plt.show()
+plt.show()
 
 q = 1
 Q = 0
